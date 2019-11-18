@@ -1,0 +1,5 @@
+# Config files with sensive informations:
+nodejs/config/default.json
+
+# node_modules
+nodejs/node_modules
