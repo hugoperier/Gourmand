@@ -1,0 +1,19 @@
+/*
+*   In order to make this config file work you have to fill the information
+*   like database access, jwtKey and sengrid email provider, then just rename it 'default.json'
+*/
+{
+    "db": {
+      "host": "localhost",
+      "user": "",
+      "password": "",
+      "database": "gourmand",
+      "port": 3306,
+      "connectionLimit": 10,
+      "debug": ["ComQueryPacket"]
+    },
+    "emailProvider": "",
+    "port": 25566,
+    "jwtKey": "",
+    "jwtExpirySeconds": 300
+}
