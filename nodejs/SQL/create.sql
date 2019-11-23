@@ -10,7 +10,10 @@ surname varchar(30) not null,
 ku_id varchar(30) not null,
 email varchar(30) not null,
 password_ varchar(90) not null,
+email_verified bool,
+verification_code varchar(16),
 right_id  INT,
+is_actif bool,
 FOREIGN KEY(right_id) REFERENCES RIGHT_(right_id)
 );
 
@@ -47,6 +50,7 @@ comment_ varchar(100),
 menu_id INT,
 place_id INT,
 user_id INT,
+is_actif bool,
 FOREIGN KEY (menu_id) REFERENCES MENU(menu_id),
 FOREIGN KEY (place_id) REFERENCES PLACE(place_id),
 FOREIGN KEY (user_id) REFERENCES USER_(user_id)

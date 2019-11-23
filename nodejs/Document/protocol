@@ -1,0 +1,80 @@
+To do;
+Modifie postman request and model for isActif = 1 on account creation
+
+
+
+
+***********************************
+*********USER**********************
+***********************************
+
+Add User to Database : 
+
+post : /users
+{
+   "firstName" : "Marcos",
+   "lastName" : "Silva",
+   "email" : "marcos.henrique@toptal.com",
+   "password" : "s3cr3tp4sswo4rd"
+   "ku_id" : 123478291,      
+}
+
+Login user :
+post /auth
+{
+   "email": "",
+   "password": ""
+}
+
+it return a cookie filled by JWT
+
+Refreshing token :
+post /token
+It return a new token
+
+Verify mail adress :
+post /verify
+{
+   verification_code: ""
+}
+It give to the user the "verified account" right if the code isnt wrong
+
+***********************************
+*********ADMIN*********************
+***********************************
+
+Delete user:
+delete /admin/delete
+{
+   email
+}
+
+Adding new place
+
+post /admin/addplace
+{
+   name
+   type
+   lat 
+   long
+}
+
+Adding menu
+post /admin/menu
+{
+   name
+   price
+   photo_url
+   contain_meal
+   place_id
+}
+
+Delete review
+delete /admin/review
+{
+   id
+}
+***********************************
+*********fetching******************
+***********************************
+
