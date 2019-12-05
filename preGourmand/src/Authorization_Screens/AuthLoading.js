@@ -4,21 +4,27 @@ import {
     Text,
     StyleSheet,
     ActivityIndicator,
-    StatusBar
+    StatusBar,
+    Image
 } from 'react-native';
 
 export default class AuthLoading extends Component {
     render(){
         return(
-            <View>
+            <View style = {styles_AuthL.Container}>
+                <Image
+                    source = {require('D:\\preGourmand\\src\\image\\logo.png')}/>
                 <View>
-                    <Text> Gourmand</Text>
-                </View>
-                <View>
-                    <ActivityIndicator/>
-                    <Text> 인증키를 확인하는 중 입니다. </Text>
+                    <ActivityIndicator style = {{marginBottom: 30}}/>
+                    <Text style = {{fontSize : 20}}> 인증키를 확인하는 중 입니다. </Text>
                 </View>
             </View>
         );
     }
 }
+const styles_AuthL = StyleSheet.create({
+    Container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});

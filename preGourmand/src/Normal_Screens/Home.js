@@ -9,7 +9,7 @@ import{
 export default class Home extends Component{
 
     callRestaurantName(){
-        return 'restaurant\'s Name';
+        return '씨티팝';
     }
 
     render(){

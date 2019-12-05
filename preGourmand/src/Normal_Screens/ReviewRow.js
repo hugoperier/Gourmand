@@ -14,19 +14,19 @@ const styles = StyleSheet.create({
 
 const ReviewRow = ({ user_name, review_grade, review_content }) => (
     <View style={styles.Review_Container}>
-        <View style={{ flexDirection: 'row' }}>
-            <View>
-                <Text>
+        <View style={{ flexDirection: 'row',margin:5}}>
+            <View style = {{flex:1}}>
+                <Text style = {{marginLeft:5}}>
                     {user_name}
                 </Text>
             </View>
-            <View>
+            <View style = {{flex:1,alignItems:'flex-end'}}>
                 <Text>
                     {review_grade}
                 </Text>
             </View>
         </View>
-        <View>
+        <View style = {{marginTop:10,marginLeft:5}}>
             <Text>
                 {review_content}
             </Text>
