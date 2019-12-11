@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "b1508ea0-a812-405a-805d-bf95c3a0b936",
+		"name": "GourmandTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateAccountWithSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"firstName\" : \"marin\",\r\n\t\"lastName\" : \"bunet\",\r\n\t\"email\" : \"newEmailHere\",\r\n\t\"password\" : \"s3cr3tp4sswo4rd\",\r\n\t\"ku_id\" : 123478291\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:25566/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Creating a new user to the database, the email input have to be replaced by a valid email"
+			},
+			"response": []
+		},
+		{
+			"name": "ConnectToAccountWithSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"email\" : \"ReplaceWithValideEmailHere\",\r\n   \"password\" : \"s3cr3tp4sswo4rd\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:25566/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"auth"
+					]
+				},
+				"description": "This request connect you to the account with the credential in Body, for testing, the password will be the same for all account (defined in the creation of these ones).\nThe response will contain a JWT in token that will be used for next access to the api, it have an expiration time of 3 minutes"
+			},
+			"response": []
+		},
+		{
+			"name": "RefreshTokenWithSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImthZGlrMzA0MDVAM21haWxhcHAubmV0IiwicGVybWlzc2lvbkxldmVsIjoxLCJwcm92aWRlciI6ImVtYWlsIiwibmFtZSI6Im1hcmluIHVuZGVmaW5lZCIsImt1X2lkIjoiMTIzNDc4MjkxIiwiZW1haWxfdmVyaWZpZWQiOnsidHlwZSI6IkJ1ZmZlciIsImRhdGEiOlswXX0sInZlcmlmaWNhdGlvbl9jb2RlIjoiMjM0NTA5IiwiaWF0IjoxNTc0MTA3Nzc3LCJleHAiOjE1NzQxMDgwNzd9.AAXq5v_eVtJGNOQZEvkbSw7gC2Y_YRvRsmXvs6goKL4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"verification_code\": \"YourVerificationCodeHere\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:25566/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"token"
+					]
+				},
+				"description": "The JWT expire in 3 minutes, the client have to refresh it before it expire.\nIt take in header the old JWT"
+			},
+			"response": []
+		},
+		{
+			"name": "VerifyEmailWithSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGVjaTUwMTNAbmV0M21haWwuY29tIiwicGVybWlzc2lvbkxldmVsIjoxLCJwcm92aWRlciI6ImVtYWlsIiwibmFtZSI6Im1hcmluIHVuZGVmaW5lZCIsImt1X2lkIjoiMTIzNDc4MjkxIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJ2ZXJpZmljYXRpb25fY29kZSI6IjhiYTM0YSIsImlhdCI6MTU3NDExMDI1NCwiZXhwIjoxNTc0MTEwNTU0fQ.lHT7CgMtaS-a7F05E61-w1tLg1qGYGRvmgY5P7dByPg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"verification_code\": \"8ba34a\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:25566/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"verify"
+					]
+				},
+				"description": "This request send the verification code to the api, to make an account verified\nIn order to make the request work, you have to give the JWT in the Authorization header."
+			},
+			"response": []
+		},
+		{
+			"name": "AddNewPlaceWithSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"label\": \"Petit le pommier\",\n\t\"typeId\": 1,\n\t\"latitude\": 2984,\n\t\"longitude\": 298478930\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:25566/admin/addplace",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"admin",
+						"addplace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddMenuWithSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"label\": \"Tiramisu\",\n\t\"price\": 4000,\n\t\"photoUrl\": \"url\",\n\t\"containMeal\": false,\n\t\"placeId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:25566/admin/addmenu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"admin",
+						"addmenu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"totopepe@meme.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:25566/admin/deleteuser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"admin",
+						"deleteuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteReviews",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"reviewId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:25566/admin/deletereview",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"admin",
+						"deletereview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPlaces",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:25566/places",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"places"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMenuByPlace",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:25566/menu/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"menu",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReviewByPlaceId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:25566/reviews/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "25566",
+					"path": [
+						"reviews",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
