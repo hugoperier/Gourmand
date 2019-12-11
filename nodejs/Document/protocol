@@ -78,3 +78,12 @@ delete /admin/review
 *********fetching******************
 ***********************************
 
+Get all the place
+- get /places
+
+Get all menu by place
+- get /menu?placeid=1
+
+Get all Review by restaurant
+- Get /reviews?placeid=1
+

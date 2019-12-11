@@ -15,8 +15,14 @@ const fetchReviewsByPlace = (connection, placeId) =>
         [placeId]
     )
 
+const fetchTypePlaces = (connection) =>
+    connection.queryAsync(
+        `SELECT * from type_place`
+    )
+
 module.exports = {
     fetchPlaces,
     fetchMenu,
-    fetchReviewsByPlace
+    fetchReviewsByPlace,
+    fetchTypePlaces
 }

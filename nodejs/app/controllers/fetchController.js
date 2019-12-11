@@ -2,12 +2,18 @@ const fetchModel = require('../models/fetchModel')
 
 const getAllPlace = (req, res, next) => {
     req.mysql.getConnection().then(connection => {
-        fetchModel.fetchPlaces(connection)
-        .then((places) => res.send(places))
+        fetchModel.fetchTypePlaces(connection)
+        .then((typesPlaces) => {
+            fetchModel.fetchPlaces(connection)
+            .then(places => {
+                places.forEach(elem => elem.type = typesPlaces.find(tp => tp.type_place_id === elem.type_id).label)
+                res.send(places)
+            })
+        })
         .catch(e => {
             console.error(e)
             res.status(400).end()
-        })
+        })        
     })
 }
 
@@ -21,6 +27,7 @@ const getMenuByPlace = (req, res, next) => {
         })                    
     })
 }
+
 
 const getReviewsByPlace = (req, res, next) => {
     req.mysql.getConnection().then(connection => {

@@ -1,10 +1,22 @@
 const express = require('express')
 const bodyParser = require("body-parser");
 const config = require("config");
+var cors = require('cors')
 const { enhanceReq } = require("./app/middlewares/mysql");
 
 const routes = require("./app/routes/gourmandRoute");
 const app = express();
+
+
+app.use(cors())
+
+/*app.use(function(request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  response.header("Access-Control-Allow-Credentials", true);
+  response.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+  next();
+});*/
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false }));
